@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Пользователь{% endblock %}
+
+{% block content %}
+    <div class="card mb-3">
+        <div class="row g-0">
+            <div class="col-md-4">
+            </div>
+            <div class="col-md-6">
+                <div class="card-body">
+
+                    <h5>
+                        <div class="row py-3">
+                            <div class="col col-3">
+                                {{ user_obj.username }}
+                            </div>
+                        </div>
+                    </h5>
+                    <p class="card-text">{{ user_obj.first_name }}</p>
+                    <p class="card-text">{{ user_obj.last_name }}</p>
+                    <p class="card-text">{{ user_obj.profile.email }}</p>
+                    {% if request.user.id == user_obj.id %}
+                        <a href="{% url 'update_profile' %}" class="btn btn-outline-dark">Редактировать
+                            профиль</a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {#    {% include 'partial/post/profile_post_list.html' %}#}
+    {#    {% if user_obj.posts.count == 0 %}#}
+    {#        <p style="color: gray; font-size: 50px; margin-top: 50px; text-align: center;"><img style="width: 50px;" src="{% static 'images_common/photo_camera.svg' %}" alt=""></p>#}
+    {#        <p style="color: gray; font-size: 30px; margin-top: 50px; text-align: center">Публикации пока нет</p>#}
+    {#    {% endif %}#}
+
+{% endblock %}

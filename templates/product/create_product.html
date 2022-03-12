@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <h4>Создать проект</h4>
+    <form method="POST" action="{% url 'create_product' %}" enctype="multipart/form-data" style="margin-top: 20px; width: 70%;">
+        {% csrf_token %}
+        {% include 'partial/product/form_product.html' with button_text='Создать' %}
+    </form>
+{% endblock %}

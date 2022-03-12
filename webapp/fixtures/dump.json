@@ -1,0 +1,36 @@
+[
+{
+    "model": "webapp.product",
+    "pk": 1,
+    "fields": {
+        "product": "Булочка",
+        "category": "cakes",
+        "description": "",
+        "picture": "product_pics/Без_названия.jpeg",
+        "is_deleted": false,
+        "user": []
+    }
+},
+{
+    "model": "webapp.product",
+    "pk": 2,
+    "fields": {
+        "product": "Булочка88",
+        "category": "did not apply",
+        "description": "",
+        "picture": "product_pics/mehmet-turgut-kirkgoz-bqasztLBMrc-unsplash_hTzHRyM.jpg",
+        "is_deleted": false,
+        "user": [
+            1
+        ]
+    }
+},
+{
+    "model": "accounts.profile",
+    "pk": 1,
+    "fields": {
+        "user": 1,
+        "email": "admin@mail.ru"
+    }
+}
+]

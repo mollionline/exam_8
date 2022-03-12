@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+    <div class="card">
+        <div class="card-body">
+            {% if product.picture %}
+                <img class="avatar" src="{{ product.picture.url }}" width="250" height="250"
+                     alt="user picture" style="border-radius: 100%">
+            {% endif %}
+
+
+            <div class="card-title">Наименование проекта: {{ product.product }}</div>
+            <p>Категория: {{ product.category }}</p>
+            <p>Описание продукта: {{ product.description|default:'Описание продукта не задано' }}</p>
+
+
+            {#            <a class="btn btn-dark" href="{% url 'list_project' %}">Вернуться в список проектов</a>#}
+
+
+            <a class="btn btn-success" href="{% url 'update_product' product.pk %}">Редактирование</a>
+
+
+            <button type="button" class="btn btn-danger" data-bs-toggle="modal"
+                    data-bs-target="#exampleModal">Удалить
+            </button>
+
+
+            <h4 style="margin-top: 20px;">Создание отзыва для данного продукта</h4>
+            <form action="{% url 'add_review' product.pk %}" method="post">
+                {% include 'partial/review/form_review.html' with button_text='Создать' %}
+            </form>
+
+            {#                <h5 style="margin-top: 20px;"> Авторизуйтесь, чтобы добавить задачу для проекта либо у вас нету#}
+            {#                    доступа</h5>#}
+
+
+        </div>
+    </div>
+    {% include 'common/delete_modal_product.html' with deleted_object=product %}
+        {% if product.reviews %}
+            {% include 'partial/review/list_review_product.html' with reviews=product.reviews.all %}
+        {% endif %}
+{% endblock %}

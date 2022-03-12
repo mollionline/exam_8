@@ -1,0 +1,50 @@
+{% csrf_token %}
+
+<label for="product">Наименование продукта</label>
+<input class="form-control {% if form.product.errors %} is-invalid {% endif %}" id="product" type="text" name="product"
+       aria-describedby="product" value="{{ form.product.value|default:'' }}">
+{% for error in form.product.errors %}
+    <p class="invalid-feedback">{{ error }}</p>
+{% endfor %}
+
+<div class="form-group" style="text-align: left; color: gray">
+    <label for="category">Категория</label>
+    <select name="category" id="category" class="form-control">
+        {% for category in categories %}
+            <option value="{{ category.0 }}" {% if category.0  == form.category.value %}
+                    selected
+            {% endif %} >{{ category.1 }} </option>
+        {% endfor %}
+    </select>
+    {% for error in form.category.errors %}
+        <div class="alert alert-danger" role="alert">
+            {{ error }}
+        </div>
+    {% endfor %}
+</div>
+
+<label for="description">Описание</label>
+<textarea class="form-control" cols="30"
+          rows="10" id="description"
+          name="description">{{ form.description.value|default:'' }}</textarea>
+{% for error in form.description.errors %}
+    <p class="invalid-feedback">{{ error }}</p>
+{% endfor %}
+
+<div class="form-group" style="text-align: left; color: gray">
+    <label for="picture">Фото продукта</label>
+    {% if form.picture.value.url %}
+        <img src="{{ form.picture.value.url }}" alt="avatar"
+             style="width: 70px; height: 70px">
+    {% endif %}
+    <input type="file" name='picture' id="picture" value="{{ form.picture.value|default:'' }}"
+           class="form-control {% if form.picture.errors %} is-invalid {% endif %}">
+    {% for error in form.picture.errors %}
+        <div class="alert alert-danger" role="alert">
+            {{ error }}
+        </div>
+    {% endfor %}
+</div>
+
+
+<input type="submit" class="form-control btn btn-secondary" value="{{ button_text }}">

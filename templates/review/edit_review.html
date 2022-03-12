@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h4>Редактировать отзыв</h4>
+<form method="POST" action="{% url 'update_review' review.pk %}" style="margin-top: 20px; width: 70%;">
+    {% csrf_token %}
+    {% include 'partial/review/form_review.html' with button_text='Редактировать' %}
+</form>
+{% endblock %}

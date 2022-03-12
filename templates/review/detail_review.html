@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="card-body">
+        <div class="col py-3">
+            <div class="card" style="border: 1px solid deepskyblue;">
+                <div class="row">
+                    <div class="col-md-8 px-3">
+                        <div class="card-body">
+                            <h5 class="card-title" style="color: #1c1ca5">{{ review.author.first_name }}</h5>
+                            <p>email: {{ review.author.email }}</p>
+                            <p>Отзыв: {{ review.text }}</p>
+                            <p>Оценка: {{ review.rating }}</p>
+                            <a class="btn btn-info" href="{% url 'detail_review' review.pk %}" class="card-link">Подробнее</a>
+                            <a class="btn btn-success" href="{% url 'update_review' review.pk %}">Изменить</a>
+                            <button type="button" class="btn btn-danger" data-bs-toggle="modal"
+                                    data-bs-target="#exampleModal">Удалить
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+        {% include 'common/delete_modal.html' with deleted_object=review %}
+{% endblock %}

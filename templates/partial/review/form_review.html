@@ -1,0 +1,19 @@
+{% csrf_token %}
+
+<div class="col-mt-3 py-4">
+    <label for="text">Отзыв</label>
+    <textarea class="form-control" cols="30"
+              rows="10" id="text"
+              name="text">{{ form.text.value|default:'' }}</textarea>
+    {% for error in form.text.errors %}
+        <p class="invalid-feedback">{{ error }}</p>
+    {% endfor %}
+    <label for="rating">Оцените продукт</label>
+    <input class="form-control {% if form.rating.errors %} is-invalid {% endif %}" id="rating" type="number"
+           name="rating"
+           aria-describedby="rating" value="{{ form.rating.value }}">
+    {% for error in form.rating.errors %}
+        <p class="invalid-feedback">{{ error }}</p>
+    {% endfor %}
+    <input type="submit" class="form-control btn btn-secondary" value="{{ button_text }}">
+</div>

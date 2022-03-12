@@ -1,0 +1,64 @@
+{% extends 'base_register.html' %}
+{% block content %}
+    <div class="container">
+        <div class="register_form">
+            <div class="register_form_under_div" style="border: 1px solid #b2a7a7">
+                <h1 style="font-family: 'Cookie', cursive; text-align: center">Регистрация</h1>
+                <form action="{% url 'register' %}" method="post" class="text-center">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <input class="form-control {% if form.username.errors %} is-invalid {% endif %}" type="text"
+                               name='username' id="username" value="{{ form.username.value|default:'' }}"
+                               placeholder="Логин">
+                        {% for error in form.username.errors %}
+                            <p class="invalid-feedback">{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                    <div class="form-group">
+                        <input class="form-control {% if profile_form.email.errors %} is-invalid {% endif %}" type="email"
+                               name='email' id="email" value="{{ profile_form.email.value|default:'' }}"
+                               placeholder="Адрес электронной почты">
+                        {% for error in profile_form.email.errors %}
+                            <p class="invalid-feedback">{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                    <div class="form-group">
+                        <input class="form-control {% if form.first_name.errors %} is-invalid {% endif %}" type="text"
+                               name='first_name' id="first_name" value="{{ form.first_name.value|default:'' }}"
+                               placeholder="Имя">
+                        {% for error in form.first_name.errors %}
+                            <p class="invalid-feedback">{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                    <div class="form-group">
+                        <input class="form-control {% if form.last_name.errors %} is-invalid {% endif %}" type="text"
+                               name='last_name' id="last_name" value="{{ form.last_name.value|default:'' }}"
+                               placeholder="Фамилия">
+                        {% for error in form.last_name.errors %}
+                            <p class="invalid-feedback">{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                    <div class="form-group">
+                        <input class="form-control {% if form.password.errors %} is-invalid {% endif %}" type="password"
+                               name="password" id="password" value="{{ form.password.value|default:'' }}"
+                               placeholder="Пароль">
+                        {% for error in form.password.errors %}
+                            <p class="invalid-feedback">{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                    <div class="form-group">
+                        <input class="form-control {% if form.password_confirm.errors %} is-invalid {% endif %}"
+                               type="password" name="password_confirm" id="password_confirm"
+                               value="{{ form.password_confirm.value|default:'' }}" placeholder="Повторите пароль">
+                        {% for error in form.password_confirm.errors %}
+                            <p class="invalid-feedback">{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                    <div class="form-group">
+                        <button class="btn btn-info form-control" type="submit">Регистрация</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,36 @@
+{% extends 'base.html' %} {% block content %}
+    {% load static %}
+    <div class="container">
+        <h3>Добро пожаловать в магазин Bon Ton</h3>
+        <div class="row row-cols-1 align-items-start">
+            {% for product in products %}
+                <div class="card mb-3">
+                    <div class="row g-0">
+                        <div class="col-md-4">
+                            {% if product.picture %}
+                                <img class="avatar" src="{{ product.picture.url }}" width="250" height="250"
+                                     alt="user picture" style="border-radius: 100%">
+                            {% else %}
+                                <img style="width: 250px;" src="{% static 'images_common/photo_camera.svg' %}" alt="">
+
+                            {% endif %}
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card-body">
+                                <h5>{{ product.product }}</h5>
+                                <p class="card-text">{{ product.description|default:'Описание продукта не задано' }}</p>
+                                <a class="btn btn-info" style="text-decoration: none; color: black; text-align: right"
+                                   href="{% url 'detail_product' product.pk %}">Подробнее</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+
+
+{% endblock %}
+
+

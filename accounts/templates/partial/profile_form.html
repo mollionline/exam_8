@@ -1,0 +1,11 @@
+<div class="form-group">
+    <label for="email" class="form-label col-5">Email</label>
+    <input type="text" name='email' id="email" value="{{ profile_form.email.value|default:'' }}"
+           class="form-control {% if profile_form.email.errors %} is-invalid {% endif %}">
+
+    {% for error in profile_form.email.errors %}
+        <div class="alert alert-danger" role="alert">
+            {{ error }}
+        </div>
+    {% endfor %}
+</div>
